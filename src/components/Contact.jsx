@@ -37,7 +37,7 @@ export default function Contact() {
           subject: formData.subject,
           message: formData.message,
         },
-        "YOUR_PUBLIC_KEY" // replace with your EmailJS public key
+        "KcKqL1RafLSvF2VkT" // replace with your EmailJS public key
       );
 
       setIsSubmitting(false);
