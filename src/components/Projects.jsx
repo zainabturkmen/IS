@@ -6,21 +6,56 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
- const projects = [
-  { src: 'https://sayed-irfan-sadat.netlify.app/static/media/img1.ee57a48826e619d12fb6.jpg', category: 'Branding' },
-  { src: 'https://sayed-irfan-sadat.netlify.app/static/media/img2.0070b4dc4691b1ec36a2.jpg', category: 'Social Media' },
-  { src: 'https://sayed-irfan-sadat.netlify.app/static/media/img3.8b36b135a31c78db58df.jpg', category: 'Marketing' },
-  { src: 'https://sayed-irfan-sadat.netlify.app/static/media/img4.8e95622d6be4d7066098.jpg', category: 'Branding' },
-  { src: 'https://sayed-irfan-sadat.netlify.app/static/media/img5.971d6c156e1dfc6ae315.jpg', category: 'Marketing' },
-  { src: 'https://sayed-irfan-sadat.netlify.app/static/media/img6.df1aa7c183dfddf04716.jpg', category: 'Social Media' },
-  { src: 'https://sayed-irfan-sadat.netlify.app/static/media/img7.4023e0d9f00cd0721d18.jpg', category: 'Branding' },
-  { src: 'https://sayed-irfan-sadat.netlify.app/static/media/img8.e7735e1aeaf2cffb1cbd.jpg', category: 'Marketing' },
-  { src: 'https://sayed-irfan-sadat.netlify.app/static/media/img9.0b9435b03f4a122f6253.jpg', category: 'Social Media' },
-  { src: 'https://sayed-irfan-sadat.netlify.app/static/media/img10.b51f81cba7414f0d2dc5.jpg', category: 'Branding' },
-  { src: 'https://sayed-irfan-sadat.netlify.app/static/media/img11.0fc4de276a4baba252ce.jpg', category: 'Marketing' },
-  { src: 'https://sayed-irfan-sadat.netlify.app/static/media/img12.006f16409cdded6923fc.jpg', category: 'Social Media' },
-];
-
+  const projects = [
+    {
+      src: "https://sayed-irfan-sadat.netlify.app/static/media/img1.ee57a48826e619d12fb6.jpg",
+      category: "Branding",
+    },
+    {
+      src: "https://sayed-irfan-sadat.netlify.app/static/media/img2.0070b4dc4691b1ec36a2.jpg",
+      category: "Social Media",
+    },
+    {
+      src: "https://sayed-irfan-sadat.netlify.app/static/media/img3.8b36b135a31c78db58df.jpg",
+      category: "Marketing",
+    },
+    {
+      src: "https://sayed-irfan-sadat.netlify.app/static/media/img4.8e95622d6be4d7066098.jpg",
+      category: "Branding",
+    },
+    {
+      src: "https://sayed-irfan-sadat.netlify.app/static/media/img5.971d6c156e1dfc6ae315.jpg",
+      category: "Marketing",
+    },
+    {
+      src: "https://sayed-irfan-sadat.netlify.app/static/media/img6.df1aa7c183dfddf04716.jpg",
+      category: "Social Media",
+    },
+    {
+      src: "https://sayed-irfan-sadat.netlify.app/static/media/img7.4023e0d9f00cd0721d18.jpg",
+      category: "Branding",
+    },
+    {
+      src: "https://sayed-irfan-sadat.netlify.app/static/media/img8.e7735e1aeaf2cffb1cbd.jpg",
+      category: "Marketing",
+    },
+    {
+      src: "https://sayed-irfan-sadat.netlify.app/static/media/img9.0b9435b03f4a122f6253.jpg",
+      category: "Social Media",
+    },
+    {
+      src: "https://sayed-irfan-sadat.netlify.app/static/media/img10.b51f81cba7414f0d2dc5.jpg",
+      category: "Branding",
+    },
+    {
+      src: "https://sayed-irfan-sadat.netlify.app/static/media/img11.0fc4de276a4baba252ce.jpg",
+      category: "Marketing",
+    },
+    {
+      src: "https://sayed-irfan-sadat.netlify.app/static/media/img12.006f16409cdded6923fc.jpg",
+      category: "Social Media",
+    },
+  ];
 
   const categories = ["All", "Branding", "Social Media", "Marketing"];
   const [activeCategory, setActiveCategory] = useState("All");
@@ -28,7 +63,7 @@ export default function Projects() {
   const filteredProjects =
     activeCategory === "All"
       ? projects
-      : projects.filter((project) => project.category === activeCategory);
+      : projects.filter((p) => p.category === activeCategory);
 
   const openLightbox = (index) => {
     setSelectedProject(index);
@@ -40,12 +75,12 @@ export default function Projects() {
   };
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % projectImages.length);
+    setCurrentImageIndex((prev) => (prev + 1) % filteredProjects.length);
   };
 
   const prevImage = () => {
     setCurrentImageIndex(
-      (prev) => (prev - 1 + projectImages.length) % projectImages.length
+      (prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length
     );
   };
 
@@ -57,7 +92,7 @@ export default function Projects() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +118,7 @@ export default function Projects() {
           </p>
         </motion.div>
 
-        {/* Category Filter */}
+        {/* Categories */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -105,7 +140,7 @@ export default function Projects() {
           ))}
         </motion.div>
 
-        {/* Projects Grid */}
+        {/* Grid */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
           {filteredProjects.map((project, index) => (
             <motion.div
@@ -124,19 +159,26 @@ export default function Projects() {
                   alt={`Project ${index + 1}`}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
-                {/* Overlay and other content */}
+
+                <div className="absolute inset-0 bg-linear-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center">
+                    <div>
+                      <h4 className="text-white font-semibold text-sm">
+                        Project {index + 1}
+                      </h4>
+                      <p className="text-gray-400 text-xs">
+                        {project.category}
+                      </p>
+                    </div>
+                    <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center">
+                      <ExternalLink className="w-4 h-4 text-white" />
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
-
-        {/* View More Button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        ></motion.div>
       </div>
 
       {/* Lightbox */}
@@ -149,49 +191,46 @@ export default function Projects() {
             className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-xl p-4"
             onClick={closeLightbox}
           >
-            {/* Close Button */}
             <button
               onClick={closeLightbox}
-              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+              className="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20"
             >
               <X className="w-6 h-6" />
             </button>
 
-            {/* Navigation */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 prevImage();
               }}
-              className="absolute left-4 lg:left-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+              className="absolute left-4 lg:left-8 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
+
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 nextImage();
               }}
-              className="absolute right-4 lg:right-8 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/20 transition-colors z-10"
+              className="absolute right-4 lg:right-8 w-12 h-12 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
 
-            {/* Image */}
             <motion.img
               key={currentImageIndex}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              src={projectImages[currentImageIndex]}
+              src={filteredProjects[currentImageIndex].src}
               alt={`Project ${currentImageIndex + 1}`}
               className="max-w-full max-h-[85vh] object-contain rounded-2xl"
               onClick={(e) => e.stopPropagation()}
             />
 
-            {/* Counter */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white text-sm">
-              {currentImageIndex + 1} / {projectImages.length}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-white/10 text-white text-sm">
+              {currentImageIndex + 1} / {filteredProjects.length}
             </div>
           </motion.div>
         )}
